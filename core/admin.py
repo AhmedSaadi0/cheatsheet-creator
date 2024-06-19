@@ -1,25 +1,25 @@
 from django.contrib import admin
 
-from .models import Description, Sheet, Title
+from .models import Content, Section, Sheet
 
 
 class SheetAdmin(admin.ModelAdmin):
-    list_display = ("name", "sheet_title")
-    search_fields = ("name", "sheet_title")
+    list_display = ("name", "title")
+    search_fields = ("name", "title")
 
 
-class TitleAdmin(admin.ModelAdmin):
+class SectionAdmin(admin.ModelAdmin):
     list_display = ("title", "sheet")
     search_fields = ("title",)
     list_filter = ("sheet",)
 
 
-class DescriptionAdmin(admin.ModelAdmin):
-    list_display = ("description", "sheet_title")
-    search_fields = ("description",)
-    list_filter = ("sheet_title",)
+class ContentAdmin(admin.ModelAdmin):
+    list_display = ("title", "section")
+    search_fields = ("title",)
+    list_filter = ("section",)
 
 
 admin.site.register(Sheet, SheetAdmin)
-admin.site.register(Title, TitleAdmin)
-admin.site.register(Description, DescriptionAdmin)
+admin.site.register(Section, SectionAdmin)
+admin.site.register(Content, ContentAdmin)
