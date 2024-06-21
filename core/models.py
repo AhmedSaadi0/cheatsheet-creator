@@ -53,8 +53,16 @@ class Section(models.Model):
         help_text=_("The cheat sheet this section belongs to."),
     )
 
+    ordering = models.SmallIntegerField(
+        verbose_name=_("Ordering"),
+        help_text=_(
+            "Set a number to order the placement of this content, lower mean higher"
+        ),
+        default=0,
+    )
+
     def __str__(self):
-        return self.title
+        return f"{self.sheet} - {self.title}"
 
     def get_all_content(self):
         return self.contents.all()
@@ -62,7 +70,7 @@ class Section(models.Model):
     class Meta:
         verbose_name = _("Section")
         verbose_name_plural = _("Sections")
-        ordering = ["title"]
+        ordering = ["ordering"]
 
 
 class Content(models.Model):
@@ -85,10 +93,18 @@ class Content(models.Model):
         help_text=_("The section this content belongs to."),
     )
 
+    ordering = models.SmallIntegerField(
+        verbose_name=_("Ordering"),
+        help_text=_(
+            "Set a number to order the placement of this content, lower mean higher"
+        ),
+        default=0,
+    )
+
     def __str__(self):
-        return self.title
+        return f"{self.section} - {self.title}"
 
     class Meta:
         verbose_name = _("Content")
         verbose_name_plural = _("Contents")
-        ordering = ["title"]
+        ordering = ["ordering"]

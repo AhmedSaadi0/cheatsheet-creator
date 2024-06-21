@@ -6,4 +6,16 @@ register = template.Library()
 
 @register.filter(name="markdown_to_html")
 def markdown_to_html(markdown_text):
-    return markdown(markdown_text, extras=["fenced-code-blocks"])
+    return markdown(
+        markdown_text,
+        extras=[
+            "fenced-code-blocks",
+            "tables",
+            "code-friendly",
+            "footnotes",
+            "cuddled-lists",
+            "metadata",
+            "nofollow",
+            "pyshell",
+        ],
+    )

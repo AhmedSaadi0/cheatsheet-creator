@@ -10,37 +10,87 @@
               integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
               crossorigin="anonymous">
         <style>
-			.title-section {
-				padding-top: 0.3rem !important;
-				padding-bottom: 0.3rem !important;
-				margin-bottom: 0.5rem;
-			}
+            body {
+                background-color: #f8f9fa;
+                color: #343a40;
+            }
+            .content-wrapper {
+                padding: 2rem 0;
+            }
+            .card-header {
+                background-color: #007bff;
+                color: white;
+            }
+            .blockquote-footer {
+                color: #6c757d;
+            }
+            pre, code {
+                background-color: #f1f1f1;
+                padding: 0.5rem;
+                border-radius: 0.25rem;
+            }
+            .title-section {
+                padding-top: 0.3rem !important;
+                padding-bottom: 0.3rem !important;
+                margin-bottom: 0.5rem;
+            }
             .text-section {
-				margin-left:1rem;
-				margin-right: 1rem;
-				margin-bottom: 2rem;
+                margin-left: 1rem;
+                margin-right: 1rem;
+                margin-bottom: 2rem;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            table, th, td {
+                border: 1px solid #dee2e6;
+            }
+            th, td {
+                padding: 0.75rem;
+                vertical-align: top;
+            }
+            thead th {
+                vertical-align: bottom;
+                border-bottom: 2px solid #dee2e6;
+            }
+            tbody + tbody {
+                border-top: 2px solid #dee2e6;
+            }
+            img {
+                max-width: 100%;
+                height: auto;
+                display: block;
+                margin: 0 auto;
+            }
+            blockquote {
+                padding: 1rem;
+                margin: 1rem 0;
+                background-color: #d1ecf1; /* Light blue */
+                border-left: 5px solid #0c5460; /* Dark blue */
             }
         </style>
     </head>
     <body>
-        <div class="container content-wrapper">
+        <div class="container content-wrapper" dir="auto">
             <div class="text-center mb-4">
-                <h1 class="display-4">{{ obj.title }}</h1>
-                <p class="lead">{{ obj.sheet_title }}</p>
+                <h1 class="display-4">{{ obj.name }}</h1>
+                <h3 class="lead">{{ obj.title }}</h3>
             </div>
-            <div class="row">
+            <div class="row" dir="auto">
                 {% for section in obj.sections.all %}
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-4 mb-4" dir="auto">
                         <div class="card">
                             <div class="card-header {% random_bootstrap_color %}">
-                                <h4>{{ section.title }}</h4>
+                                <h4 dir="auto">{{ section.title }}</h4>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" dir="auto">
+                                <h3 class="text-section" dir="auto">{{ section.header }}</h3>
                                 {% for content in section.contents.all %}
-                                    <div class="alert alert-secondary title-section">
+                                    <div class="alert alert-secondary title-section" dir="auto">
                                         <strong>{{ content.title }}</strong>
                                     </div>
-                                    <div class="text-section">{{ content.message|markdown_to_html|safe }}</div>
+                                    <div class="text-section" dir="auto">{{ content.message|markdown_to_html|safe }}</div>
                                 {% endfor %}
                             </div>
                         </div>
@@ -52,4 +102,19 @@
                 integrity="sha384-HoA7vCSZDYTwtk9lVtRRSFZBNZtl49YqN7F3t3aSpFjDqOx1HiZRgqZfC2MSf8E1"
                 crossorigin="anonymous"></script>
     </body>
+    <footer class="bg-light text-center text-lg-start">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Cheat Sheet Creator</h5>
+                    <p>Create, organize, and display your cheat sheets with ease.</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2024 Cheat Sheet Creator. Created by <strong>Ahmed Alsaadi</strong>.
+            Developed by <a href="https://github.com/AhmedSaadi0/cheatsheet-creator"
+    target="_blank">Ahmed Alsaadi</a>.
+        </div>
+    </footer>
 </html>
