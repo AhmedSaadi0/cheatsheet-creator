@@ -5,5 +5,5 @@ Cheat Sheet Creator is a Django-based web application that allows users to creat
 ## Example:
 
 <p align='center'>
-	<img alt='screenshot 1' src='https://github.com/AhmedSaadi0/cheatsheet-creator/main/blob/Cheatsheet.png'/>
+	<img alt='screenshot 1' src='https://github.com/AhmedSaadi0/cheatsheet-creator/blob/main/Cheatsheet.png'/>
 </p>
