@@ -1,21 +1,29 @@
+import markdown
 from django import template
-from markdown2 import markdown
 
 register = template.Library()
 
 
 @register.filter(name="markdown_to_html")
 def markdown_to_html(markdown_text):
-    return markdown(
-        markdown_text,
-        extras=[
-            "fenced-code-blocks",
-            "tables",
-            "code-friendly",
-            "footnotes",
-            "cuddled-lists",
-            "metadata",
-            "nofollow",
-            "pyshell",
-        ],
-    )
+    if not isinstance(markdown_text, str):
+        return markdown_text
+
+    try:
+        html = markdown.markdown(
+            markdown_text,
+            extensions=[
+                "markdown.extensions.fenced_code",
+                "markdown.extensions.tables",
+                "markdown.extensions.footnotes",
+                "markdown.extensions.codehilite",
+                "markdown.extensions.meta",
+                "markdown.extensions.sane_lists",
+                "markdown.extensions.toc",
+            ],
+            output_format="html5",
+        )
+    except Exception as e:
+        return f"Error processing markdown: {e}"
+
+    return html
